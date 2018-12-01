@@ -418,7 +418,7 @@ app.post('/api/brand/upload',upload.single('file'),function(req,res){
       var db = client.db('project');
       db.collection('brand').insertOne({
         brandName:req.body.barndName,
-        fileName:filieName
+        filieName:filieName
       },function(err){
         if(err){
             results.code = -1;
@@ -545,7 +545,7 @@ app.get('/api/brand/delete',function(req,res){
 // localhost:3000/api/brand/change
 app.post('/api/brand/change',upload.single('file'),function(req,res){
   var results = {};
-  var barndName=req.body.barndName;
+  var brandName=req.body.brandName;
   var id=req.body._id;
   // console.log(req.body.barndName);//产品名称
   // console.log(req.body._id);//存储图片的id
@@ -570,7 +570,7 @@ app.post('/api/brand/change',upload.single('file'),function(req,res){
       };
       var updateStr={
         $set:{
-          "barndName":barndName,
+          "brandName":brandName,
           "filieName":filieName
         }
       }
@@ -619,10 +619,10 @@ app.post('/api/phone/upload',upload.single('file'),function(req,res){
       var db = client.db('project');
       db.collection('phone').insertOne({
         phoneName:req.body.phoneName,
-        brandName:req.body.barndName,
+        brandName:req.body.brandName,
         price:req.body.price,
         secondhandPrice:req.body.secondhandPrice,
-        fileName:filieName
+        filieName:filieName
       },function(err){
         if(err){
             results.code = -1;
@@ -746,11 +746,11 @@ app.get('/api/phone/delete',function(req,res){
 app.post('/api/phone/change',upload.single('file'),function(req,res){
   var results = {};
   var phoneName = req.body.phoneName;
-  var barndName=req.body.barndName;
+  var brandName=req.body.brandName;
   var price=req.body.price;
   var secondhandPrice=req.body.secondhandPrice;
   var id=req.body._id;
-  // console.log(req.body.barndName);//产品名称
+  // console.log(req.body.brandName);//产品名称
   // console.log(req.body._id);//存储图片的id
 
   var filieName='images/'+ new Date().getTime()+ '_' +req.file.originalname;
@@ -774,7 +774,7 @@ app.post('/api/phone/change',upload.single('file'),function(req,res){
       var updateStr={
         $set:{
           "phoneName":phoneName,
-          "barndName":barndName,
+          "brandName":brandName,
           "price":price,
           "secondhandPrice":secondhandPrice,
           "filieName":filieName
